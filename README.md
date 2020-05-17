@@ -1,6 +1,6 @@
 # Graphs-in-C++
 Algorithms of Graph<br/>
->In this code I have implemented some basic graph Algorithms-<br/>
+In this code I have implemented some basic graph Algorithms-<br/>
 >Topological Sorting<br/>
 >DFS<br/>
 >BFS<br/>
