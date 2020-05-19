@@ -10,4 +10,4 @@ In this code I have implemented some basic graph Algorithms-<br/>
 >Floyd Warshall algorithm<br/>
 >Detecting a cycle presence in directed graph<br/>
 >Detecting a cycle presence in undirected graph<br/>
->Finding Strongly connected components in a Directed graph-Kosaraju's Algorithm<br/>
+>Kosaraju's Algorithm-Finding Strongly connected components in a Directed graph<br/>
