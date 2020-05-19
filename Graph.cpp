@@ -250,6 +250,58 @@ void floy_warshell(int g6[][4])
         cout<<endl;
     }
 }
+
+void topo(int s, vector<vector<int>> adj,bool visited[],stack<int> &st){
+    visited[s]=true;
+    for(auto x:adj[s]){
+        if(visited[x]==false)
+        topo(x,adj,visited,st);
+    }
+    st.push(s);
+}
+void transpose(vector<vector<int>> adj,vector<vector<int>> &trans){
+    for(int i=0;i<adj.size();i++){
+        for ( int j = 0; j < adj[i].size(); j++)
+        {
+            trans[adj[i][j]].push_back(i);
+        }   
+    }
+}
+void dfs_util(int s,vector<vector<int>> trans,bool visited[]){
+    visited[s]=true;
+    cout<<s<<" ";
+    for(auto x: trans[s]){
+        if(visited[x]==false){
+            dfs_util(x,trans,visited);
+        }
+    }
+}
+void kosaraju(int V,vector<vector<int>> adj){
+    bool* visited=new bool[V];
+    stack<int> st;
+    for(int i=0;i<V;i++){
+        visited[i]=false;
+    }
+    for(int i=0;i<V;i++){
+        if(visited[i]==false)
+        topo(i,adj,visited,st);
+    }
+    vector<vector<int>> trans(V);
+    transpose(adj, trans);
+    for(int i=0;i<V;i++){
+        visited[i]=false;
+    }
+    while(st.size()){
+        int x=st.top();
+        st.pop();
+        if(visited[x]==false){
+            dfs_util(x,trans,visited);
+            cout<<endl;
+        }
+    }
+}
+
+
 int main(){
     int V=5;
     Graph g(V);
@@ -326,11 +378,13 @@ int main(){
     floy_warshell(g6);
     // Create a graph given in the above diagram 
     Graph_DAC g7(6); 
-    g7.addedge(5, 2); 
     g7.addedge(5, 0); 
-    g7.addedge(4, 0); 
-    g7.addedge(4, 1); 
+    g7.addedge(5, 2); 
     g7.addedge(2, 3); 
-    g7.addedge(3, 1);
-    g7.topological_sort();
+    g7.addedge(4, 1); 
+    g7.addedge(4, 0); 
+    g7.addedge(1, 3);
+    g7.topological_sort();cout<<endl;
+    vector<vector<int>> g8={{2,3},{0},{1},{4},{}};
+    kosaraju(5, g8); //to find cycles in connected graph
 }
