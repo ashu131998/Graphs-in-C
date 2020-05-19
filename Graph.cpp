@@ -300,7 +300,36 @@ void kosaraju(int V,vector<vector<int>> adj){
         }
     }
 }
-
+bool detectACycle_util(int s,bool visited[],bool reStack[],vector<vector<int>> g9){
+    visited[s]=true;
+    reStack[s]=true;
+    for(auto x:g9[s]){
+        if(!visited[x] and detectACycle_util(x,visited,reStack,g9)){
+            return true;
+        }
+        if(reStack[x]){
+            return true;
+        }
+    }
+    reStack[s]=false;
+    return false;
+}
+bool detectACycle(vector<vector<int>> g9,int V){
+    bool *visited=new bool[V];
+    bool *reStack=new bool[V];
+    for (int i = 0; i < V; i++)
+    {
+        visited[i]=false;
+        reStack[i]=false;
+    }
+    for (int i = 0; i < V; i++)
+    {
+        if(detectACycle_util(i,visited,reStack,g9)){
+            return true;
+        }
+    }
+    return false;
+}
 
 int main(){
     int V=5;
@@ -385,6 +414,9 @@ int main(){
     g7.addedge(4, 0); 
     g7.addedge(1, 3);
     g7.topological_sort();cout<<endl;
-    vector<vector<int>> g8={{2,3},{0},{1},{4},{}};
-    kosaraju(5, g8); //to find cycles in connected graph
+    vector<vector<int>> g8={{2,3},{0},{1},{4},{}}; //directed graph
+    kosaraju(5, g8); //to find strongly connected component of graph
+    vector<vector<int>> g9={{1,2},{2},{0,3},{3}};
+    bool dac=detectACycle(g9,4);
+    cout<<dac;
 }
