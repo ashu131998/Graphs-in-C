@@ -9,4 +9,4 @@ In this code I have implemented some basic graph Algorithms-<br/>
 >Bellman ford Algorithm<br/>
 >Floyd Warshall algorithm<br/>
 >Detecting a cycle presence.<br/>
->Detecting cycles in Direted graph-Kosaraju's Algorithm<br/>
+>Detecting cycles in a Directed graph-Kosaraju's Algorithm<br/>
