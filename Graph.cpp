@@ -14,7 +14,7 @@ class GraphPair_di{
     void addedge(int u,int v,int x){
         vertex[u].push_back(make_pair(v,x));
     }
-    //Dijkstas and Bellman Same for Directed graph. Bellman is not defined for undirected graph.
+    //Dijkstas for Directed graph. Bellman is not defined for undirected graph.
     void dikstras(int s){
         vector<int> dist(V,INT_MAX);
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
